@@ -1,9 +1,12 @@
 import {Skill, SkillOutput} from './baseSkill'
 import { ContentStore } from './store'
 import { Context } from './travellingData'
+import { calculateGestationalWeek } from './calculator'
+import { formatGestationalWeek } from './normalizer'
 
-type Snapshot  = {
-    week : number
+type PublicSnapshot = {
+    semanaGestacional:string,
+    semanaNumero:number,
     outputs:SkillOutput[]
 }
 
@@ -13,28 +16,31 @@ const contentStore: ContentStore = {
     weeks : {}
 }
 
-function resolveContext (input: {
+type CoreInput = {
     today:Date
-    startDate: Date
-}): Context {
-    const diffMs = input.today.getTime()-input.startDate.getTime()
-    const diffWeeks = Math.floor(diffMs / (1000 * 60 * 60 * 24 * 7))
+    lastPeriodDate:Date
+}
+
+function resolveContext (input:CoreInput): Context {
+    const gestationalWeek = calculateGestationalWeek(
+        input.today,
+        input.lastPeriodDate,
+    )
 
     return {
         today:input.today,
-        startDate:input.startDate,
-        gestationalWeek:diffWeeks
+        lastPeriodDate:input.lastPeriodDate,
+        gestationalWeek
     }
 }
 
-
 export function runCore(input:{
     today:Date
-    startDate:Date
-}):Snapshot {
+    lastPeriodDate:Date
+}):PublicSnapshot {
 
     const context = resolveContext(input)
-    const outputs = []
+    const outputs:SkillOutput[] = []
 
     for (const skill of skills){
         if(skill.applies(context)){
@@ -43,7 +49,9 @@ export function runCore(input:{
     }
 
     return {
-        week: context.gestationalWeek,
+        semanaNumero: context.gestationalWeek,
+        semanaGestacional:
+        formatGestationalWeek(context.gestationalWeek),
         outputs
     }
 }

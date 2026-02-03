@@ -1,6 +1,6 @@
 
 export type Context = {
     today: Date;
-    startDate: Date;
+    lastPeriodDate: Date;
     gestationalWeek:number;
 }
