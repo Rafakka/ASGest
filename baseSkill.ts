@@ -8,6 +8,6 @@ export type SkillOutput = {
 
 export type Skill = {
     id:string
-    applies(ctx:Context): boolean
+    applies(ctx:Context, store:ContentStore):boolean
     run (ctx:Context, store:ContentStore):SkillOutput
 }

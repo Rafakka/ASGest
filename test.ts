@@ -5,5 +5,5 @@ const result = runCore({
     lastPeriodDate: new Date("2025-12-15")
 })
 
-console.log("Gestational week: ",result.week)
-console.log("Full snapsho: ", result)
+console.log("Gestational week: ", result.semanaGestacional)
+console.log("Full snapshot: ", result)

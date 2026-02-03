@@ -3,6 +3,8 @@ import { ContentStore } from './store'
 import { Context } from './travellingData'
 import { calculateGestationalWeek } from './calculator'
 import { formatGestationalWeek } from './normalizer'
+import { tutorialSkill } from './tutorialSkill'
+import { weekInfoSkill } from './skills/weekInfoSkill'
 
 type PublicSnapshot = {
     semanaGestacional:string,
@@ -10,7 +12,10 @@ type PublicSnapshot = {
     outputs:SkillOutput[]
 }
 
-const skills: Skill[] = []
+const skills: Skill[] = [
+    tutorialSkill,
+    weekInfoSkill,
+]
 
 const contentStore: ContentStore = {
     weeks : {}
