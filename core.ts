@@ -5,6 +5,7 @@ import { calculateGestationalWeek } from './calculator'
 import { formatGestationalWeek } from './normalizer'
 import { tutorialSkill } from './tutorialSkill'
 import { weekInfoSkill } from './skills/weekInfoSkill'
+import { fallbackWeekSkill } from './skills/fallbackWeekSkill'
 
 type PublicSnapshot = {
     semanaGestacional:string,
@@ -15,6 +16,8 @@ type PublicSnapshot = {
 const skills: Skill[] = [
     tutorialSkill,
     weekInfoSkill,
+    fallbackWeekSkill,
+    
 ]
 
 const contentStore: ContentStore = {
@@ -48,7 +51,7 @@ export function runCore(input:{
     const outputs:SkillOutput[] = []
 
     for (const skill of skills){
-        if(skill.applies(context)){
+        if(skill.applies(context, contentStore)){
             outputs.push(skill.run(context, contentStore))
         }
     }

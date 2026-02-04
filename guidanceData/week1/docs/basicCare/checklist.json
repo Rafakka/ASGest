@@ -1,0 +1,34 @@
+{
+  "title": "Checklist da Semana",
+  "items": [
+    {
+      "keywords":["hidratacao","agua","liquidos","inchaco"],
+      "priority": 1,
+      "id": "agua",
+      "label": "Beber água regularmente ao longo do dia",
+      "type": "habit"
+    },
+    {
+      "keywords":["alimentacao","dica","cuidado","praticasdiarias"],
+      "priority": 2,
+      "id": "alimentacao",
+      "label": "Manter uma alimentação equilibrada",
+      "type": "habit"
+    },
+    {
+      "keywords":["vitamina","acido","folico","cuidado"],
+      "priority": 1,
+      "id": "vitaminas",
+      "label": "Tomar ácido fólico conforme orientação médica",
+      "type": "reminder"
+    },
+    {
+      "keywords":["dicas","cuidado","praticasdiarias","diario"],
+      "priority": 3,
+      "id": "sinais",
+      "label": "Observar sinais diferentes no corpo",
+      "type": "observation"
+    }
+  ],
+  "note": "Este checklist é apenas informativo e não substitui acompanhamento médico."
+}
